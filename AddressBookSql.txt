@@ -1,0 +1,190 @@
+//Create a DataBase
+
+CREATE database Address_Book_System;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| address_book_system |
+| information_schema  |
+| mysql               |
+| payroll_service     |
+| performance_schema  |
+| sakila              |
+| sys                 |
+| world               |
++---------------------+
+8 rows in set (0.00 sec)
+
+mysql> USE address_book_system;
+Database changed
+
+
+
+//Create table as its attribute
+
+mysql> CREATE TABLE Address_Book_Client(FirstName varchar(10), LastName varchar(10), Address varchar(50), city varchar(20), State varchar(20), ZipCode int, PhoneNumber varchar(10), primary key(FirstName));
+Query OK, 0 rows affected (0.07 sec)
+
+//Insert values into database
+
+INSERT INTO Address_Book_Client(FirstName, LastName, Address, city, State, ZipCode, PhoneNumber)values ('Shubham', 'N', 'XYZ', 'J city', 'MH', '42500', '8554043088');
+Query OK, 1 row affected (0.02 sec)
+
+INSERT INTO Address_Book_Client(FirstName, LastName, Address, city, State, ZipCode, PhoneNumber)values ('Nikhil', 'P', 'ABC', 'M city', 'MH', '42400', '7249002133');
+Query OK, 1 row affected (0.01 sec)
+
+INSERT INTO Address_Book_Client(FirstName, LastName, Address, city, State, ZipCode, PhoneNumber)values ('Sunil', 'P', 'PQR', 'P city', 'MH', '42300', '8888881645');
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> select * from Address_Book_Client;
++-----------+----------+---------+--------+-------+---------+-------------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber |
++-----------+----------+---------+--------+-------+---------+-------------+
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  |
+| Sunil     | P        | PQR     | P city | MH    |   42300 | 8888881645  |
++-----------+----------+---------+--------+-------+---------+-------------+
+3 rows in set (0.00 sec)
+
+//Update the values using FirstName
+
+mysql> UPDATE Address_Book_Client SET LastName = 'L' WHERE FirstName = 'Sunil';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Address_Book_Client;
++-----------+----------+---------+--------+-------+---------+-------------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber |
++-----------+----------+---------+--------+-------+---------+-------------+
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  |
+| Sunil     | L        | PQR     | P city | MH    |   42300 | 8888881645  |
++-----------+----------+---------+--------+-------+---------+-------------+
+3 rows in set (0.00 sec)
+
+//Delete the values in table
+
+mysql> DELETE FROM Address_Book_Client WHERE LastName = 'L';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Address_Book_Client;
++-----------+----------+---------+--------+-------+---------+-------------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber |
++-----------+----------+---------+--------+-------+---------+-------------+
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  |
++-----------+----------+---------+--------+-------+---------+-------------+
+2 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO Address_Book_Client(FirstName, LastName, Address, city, State, ZipCode, PhoneNumber)values ('Baby', 'V', 'TYU', 'A city', 'TN', '659321', '5678943210');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Address_Book_Client(FirstName, LastName, Address, city, State, ZipCode, PhoneNumber)values ('Naruto', 'U', 'JPN', 'K city', 'JP', '9999', '6565656563');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Address_Book_Client;
++-----------+----------+---------+--------+-------+---------+-------------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber |
++-----------+----------+---------+--------+-------+---------+-------------+
+| Baby      | V        | TYU     | A city | TN    |  659321 | 5678943210  |
+| Naruto    | U        | JPN     | K city | JP    |    9999 | 6565656563  |
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  |
++-----------+----------+---------+--------+-------+---------+-------------+
+4 rows in set (0.00 sec)
+
+//Retrieve the data using state
+
+mysql> SELECT * FROM Address_Book_Client WHERE State = 'MH';
++-----------+----------+---------+--------+-------+---------+-------------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber |
++-----------+----------+---------+--------+-------+---------+-------------+
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  |
++-----------+----------+---------+--------+-------+---------+-------------+
+2 rows in set (0.00 sec)
+
+//Size of Table
+
+mysql> SELECT COUNT(City) FROM Address_Book_Client;
++-------------+
+| COUNT(City) |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.00 sec)
+
+//Sorted Alphabetically
+
+mysql> SELECT * FROM Address_Book_Client ORDER BY FirstName;
++-----------+----------+---------+--------+-------+---------+-------------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber |
++-----------+----------+---------+--------+-------+---------+-------------+
+| Baby      | V        | TYU     | A city | TN    |  659321 | 5678943210  |
+| Naruto    | U        | JPN     | K city | JP    |    9999 | 6565656563  |
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  |
++-----------+----------+---------+--------+-------+---------+-------------+
+4 rows in set (0.00 sec)
+
+
+mysql> ALTER TABLE address_book_client ADD Type varchar(20) NOT NULL;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Address_Book_Client ORDER BY FirstName;
++-----------+----------+---------+--------+-------+---------+-------------+------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber | Type |
++-----------+----------+---------+--------+-------+---------+-------------+------+
+| Baby      | V        | TYU     | A city | TN    |  659321 | 5678943210  |      |
+| Naruto    | U        | JPN     | K city | JP    |    9999 | 6565656563  |      |
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  |      |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  |      |
++-----------+----------+---------+--------+-------+---------+-------------+------+
+4 rows in set (0.00 sec)
+
+mysql> UPDATE address_book_client SET  Type = 'Wife' WHERE FirstName = 'Baby';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book_client SET  Type = 'Friend' WHERE FirstName = 'Naruto';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book_client SET  Type = 'Brother' WHERE FirstName = 'Nikhil';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book_client SET  Type = 'Father' WHERE FirstName = 'Shubham';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Address_Book_Client;
++-----------+----------+---------+--------+-------+---------+-------------+---------+
+| FirstName | LastName | Address | city   | State | ZipCode | PhoneNumber | Type    |
++-----------+----------+---------+--------+-------+---------+-------------+---------+
+| Baby      | V        | TYU     | A city | TN    |  659321 | 5678943210  | Wife    |
+| Naruto    | U        | JPN     | K city | JP    |    9999 | 6565656563  | Friend  |
+| Nikhil    | P        | ABC     | M city | MH    |   42400 | 7249002133  | Brother |
+| Shubham   | N        | XYZ     | J city | MH    |   42500 | 8554043088  | Father  |
++-----------+----------+---------+--------+-------+---------+-------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select FirstName, LastName, Type from address_book_client;
++-----------+----------+---------+
+| FirstName | LastName | Type    |
++-----------+----------+---------+
+| Baby      | V        | Wife    |
+| Naruto    | U        | Friend  |
+| Nikhil    | P        | Brother |
+| Shubham   | N        | Father  |
++-----------+----------+---------+
+4 rows in set (0.00 sec)
+
+
+
