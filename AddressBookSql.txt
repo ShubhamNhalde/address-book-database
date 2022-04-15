@@ -1,0 +1,22 @@
+//Create a DataBase
+
+CREATE database Address_Book_System;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| address_book_system |
+| information_schema  |
+| mysql               |
+| payroll_service     |
+| performance_schema  |
+| sakila              |
+| sys                 |
+| world               |
++---------------------+
+8 rows in set (0.00 sec)
+
+mysql> USE address_book_system;
+Database changed
